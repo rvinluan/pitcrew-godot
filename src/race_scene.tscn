@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://dssrlq5jh0hj5"]
+
+[ext_resource type="Texture2D" uid="uid://bk2uwgxesxoyj" path="res://assets/racetrack-background.PNG" id="1_fw7cn"]
+[ext_resource type="PackedScene" uid="uid://cj1r76ng66s1m" path="res://src/player.tscn" id="2_ild5j"]
+[ext_resource type="PackedScene" uid="uid://dggkupk3o1yeo" path="res://src/car.tscn" id="3_yqbft"]
+[ext_resource type="Script" uid="uid://reajr8vmpt84" path="res://src/game_manager.gd" id="4_0indh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ild5j"]
+normal = Vector2(-0.00392154, 0.999992)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqbft"]
+normal = Vector2(0.00666652, -0.999978)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0indh"]
+normal = Vector2(-6.22159e-08, -1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_brj0q"]
+normal = Vector2(5.46014e-08, 1)
+
+[node name="RaceScene" type="Node2D"]
+y_sort_enabled = true
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_fw7cn")
+
+[node name="Player 1" parent="." instance=ExtResource("2_ild5j")]
+position = Vector2(-957, 520)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Top wall" type="StaticBody2D" parent="."]
+position = Vector2(-16, -204)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top wall"]
+scale = Vector2(9.59, 9.59)
+shape = SubResource("WorldBoundaryShape2D_ild5j")
+
+[node name="Bottom Wall" type="StaticBody2D" parent="."]
+position = Vector2(-16, 398)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
+position = Vector2(0, 336)
+scale = Vector2(9.59, 9.59)
+shape = SubResource("WorldBoundaryShape2D_yqbft")
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+position = Vector2(-16, 398)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+position = Vector2(-1283, -133)
+rotation = 1.5708
+scale = Vector2(9.59, 9.59)
+shape = SubResource("WorldBoundaryShape2D_0indh")
+
+[node name="Right Wall" type="StaticBody2D" parent="."]
+position = Vector2(-16, 398)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+position = Vector2(1310, -133)
+rotation = 1.5708
+scale = Vector2(9.59, 9.59)
+shape = SubResource("WorldBoundaryShape2D_brj0q")
+
+[node name="Player 2" parent="." instance=ExtResource("2_ild5j")]
+position = Vector2(486, 354)
+blueTeam = false
+playerControl = 2
+
+[node name="Car" parent="." instance=ExtResource("3_yqbft")]
+position = Vector2(-675, 101)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("4_0indh")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1275.0
+offset_top = -715.0
+offset_right = 1272.0
+offset_bottom = 715.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0

@@ -1,0 +1,193 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl1008o1t5cds"]
+
+[ext_resource type="Script" uid="uid://ba3aqo6l7nugo" path="res://src/minigame_tires.gd" id="1_1xd3g"]
+[ext_resource type="Script" uid="uid://b1ofqbx8pjwvn" path="res://src/bar.gd" id="1_4s4le"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8jti"]
+bg_color = Color(0.171039, 0.171039, 0.171039, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4s4le"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="Curve" id="Curve_4s4le"]
+_data = [Vector2(0, 0.00292397), 0.0, 0.270175, 0, 0, Vector2(0.986772, 0.982456), 3.14575, 0.0, 0, 0]
+point_count = 2
+
+[node name="Minigame Tires" type="Control" node_paths=PackedStringArray("allBars")]
+z_index = 1
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 300.0
+script = ExtResource("1_1xd3g")
+allBars = [NodePath("MarginContainer/VBoxContainer/Bar1"), NodePath("MarginContainer/VBoxContainer/Bar2"), NodePath("MarginContainer/VBoxContainer/Bar3"), NodePath("MarginContainer/VBoxContainer/Bar4")]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o8jti")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Bar1" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 34)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4s4le")
+script = ExtResource("1_4s4le")
+speedCurve = SubResource("Curve_4s4le")
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/Bar1"]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 34)
+width = 2.0
+default_color = Color(1, 0.176471, 1, 1)
+
+[node name="YellowArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar1"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 315.0
+offset_right = 365.0
+grow_vertical = 2
+color = Color(1, 0.898039, 0.729412, 1)
+
+[node name="GreenArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar1"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_right = 345.0
+grow_vertical = 2
+color = Color(0.623529, 0.835294, 0.0901961, 1)
+
+[node name="Bar2" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 34)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4s4le")
+script = ExtResource("1_4s4le")
+speedCurve = SubResource("Curve_4s4le")
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/Bar2"]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 34)
+width = 2.0
+default_color = Color(1, 0.176471, 1, 1)
+
+[node name="YellowArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 315.0
+offset_right = 365.0
+grow_vertical = 2
+color = Color(1, 0.898039, 0.729412, 1)
+
+[node name="GreenArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar2"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_right = 345.0
+grow_vertical = 2
+color = Color(0.623529, 0.835294, 0.0901961, 1)
+
+[node name="Bar3" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 34)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4s4le")
+script = ExtResource("1_4s4le")
+speedCurve = SubResource("Curve_4s4le")
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/Bar3"]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 34)
+width = 2.0
+default_color = Color(1, 0.176471, 1, 1)
+
+[node name="YellowArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 315.0
+offset_right = 365.0
+grow_vertical = 2
+color = Color(1, 0.898039, 0.729412, 1)
+
+[node name="GreenArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar3"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_right = 345.0
+grow_vertical = 2
+color = Color(0.623529, 0.835294, 0.0901961, 1)
+
+[node name="Bar4" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 34)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4s4le")
+script = ExtResource("1_4s4le")
+speedCurve = SubResource("Curve_4s4le")
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/Bar4"]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 34)
+width = 2.0
+default_color = Color(1, 0.176471, 1, 1)
+
+[node name="YellowArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar4"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 315.0
+offset_right = 365.0
+grow_vertical = 2
+color = Color(1, 0.898039, 0.729412, 1)
+
+[node name="GreenArea" type="ColorRect" parent="MarginContainer/VBoxContainer/Bar4"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_right = 345.0
+grow_vertical = 2
+color = Color(0.623529, 0.835294, 0.0901961, 1)

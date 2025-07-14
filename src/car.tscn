@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dggkupk3o1yeo"]
+
+[ext_resource type="Texture2D" uid="uid://drrsbxiou0j8x" path="res://assets/blue-team-car.png" id="1_1ci06"]
+[ext_resource type="Script" uid="uid://bu13xbwaupyxm" path="res://src/car.gd" id="1_25ujd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25ujd"]
+size = Vector2(510, 197)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ci06"]
+radius = 60.0
+height = 200.0
+
+[node name="Car" type="RigidBody2D" node_paths=PackedStringArray("workAreas")]
+gravity_scale = 0.0
+script = ExtResource("1_25ujd")
+workAreas = [NodePath("Tire Work Area1"), NodePath("Tire Work Area2"), NodePath("Tire Work Area3"), NodePath("Tire Work Area4")]
+
+[node name="carSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_1ci06")
+
+[node name="bodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(2, 3.5)
+shape = SubResource("RectangleShape2D_25ujd")
+
+[node name="Tire Work Area1" type="Area2D" parent="."]
+position = Vector2(-94, -217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tire Work Area1"]
+position = Vector2(46, 62)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ci06")
+
+[node name="Tire Work Area2" type="Area2D" parent="."]
+position = Vector2(125, -217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tire Work Area2"]
+position = Vector2(46, 62)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ci06")
+
+[node name="Tire Work Area3" type="Area2D" parent="."]
+position = Vector2(-94, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tire Work Area3"]
+position = Vector2(60, 54)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ci06")
+
+[node name="Tire Work Area4" type="Area2D" parent="."]
+position = Vector2(145, 85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tire Work Area4"]
+position = Vector2(46, 62)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ci06")

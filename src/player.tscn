@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj1r76ng66s1m"]
+
+[ext_resource type="Script" uid="uid://bd63g0id0j35x" path="res://src/player.gd" id="1_gmfve"]
+[ext_resource type="Texture2D" uid="uid://br5u1oqmas2q4" path="res://assets/blue-team-player.png" id="1_lowyb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmfve"]
+radius = 34.0
+height = 122.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmfve"]
+size = Vector2(67, 49)
+
+[node name="Blue Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_gmfve")
+
+[node name="playerSprite" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+texture = ExtResource("1_lowyb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gmfve")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 24.5)
+shape = SubResource("RectangleShape2D_gmfve")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
