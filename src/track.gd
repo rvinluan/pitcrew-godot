@@ -3,6 +3,8 @@ class_name Track
 
 @export var curve: Curve2D
 
+
+
 func _ready() -> void:
 	print(curve)
 	points = curve.get_baked_points()

@@ -23,62 +23,42 @@ normal = Vector2(5.46014e-08, 1)
 [node name="RaceScene" type="Node2D"]
 y_sort_enabled = true
 
-[node name="background" type="Sprite2D" parent="."]
-z_index = -1
-texture = ExtResource("1_fw7cn")
+[node name="Bounds" type="Node" parent="."]
 
-[node name="Player 1" parent="." instance=ExtResource("2_ild5j")]
-position = Vector2(-957, 520)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Top wall" type="StaticBody2D" parent="."]
+[node name="Top wall" type="StaticBody2D" parent="Bounds"]
 position = Vector2(-16, -204)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Top wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top wall"]
 scale = Vector2(9.59, 9.59)
 shape = SubResource("WorldBoundaryShape2D_ild5j")
 
-[node name="Bottom Wall" type="StaticBody2D" parent="."]
+[node name="Bottom Wall" type="StaticBody2D" parent="Bounds"]
 position = Vector2(-16, 398)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
-position = Vector2(0, 336)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom Wall"]
+position = Vector2(0, -34)
 scale = Vector2(9.59, 9.59)
 shape = SubResource("WorldBoundaryShape2D_yqbft")
 
-[node name="Left Wall" type="StaticBody2D" parent="."]
+[node name="Left Wall" type="StaticBody2D" parent="Bounds"]
 position = Vector2(-16, 398)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left Wall"]
 position = Vector2(-1283, -133)
 rotation = 1.5708
 scale = Vector2(9.59, 9.59)
 shape = SubResource("WorldBoundaryShape2D_0indh")
 
-[node name="Right Wall" type="StaticBody2D" parent="."]
+[node name="Right Wall" type="StaticBody2D" parent="Bounds"]
 position = Vector2(-16, 398)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right Wall"]
 position = Vector2(1310, -133)
 rotation = 1.5708
 scale = Vector2(9.59, 9.59)
 shape = SubResource("WorldBoundaryShape2D_brj0q")
 
-[node name="Player 2" parent="." instance=ExtResource("2_ild5j")]
-position = Vector2(486, 354)
-blueTeam = false
-playerControl = 2
-
-[node name="Car" parent="." instance=ExtResource("3_yqbft")]
-position = Vector2(-675, 101)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("4_0indh")
-
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,21 +73,61 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 metadata/_edit_lock_ = true
 
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(0, -53)
+[node name="Track Display" type="Line2D" parent="UI"]
+position = Vector2(1275, 662)
 points = PackedVector2Array(1459, -431)
 width = 5.0
 joint_mode = 2
 script = ExtResource("5_brj0q")
+
+[node name="Path2D" type="Path2D" parent="UI/Track Display"]
 curve = ExtResource("6_m7xon")
 
-[node name="Path2D" type="Path2D" parent="Line2D"]
-curve = ExtResource("6_m7xon")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Line2D/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="UI/Track Display/Path2D"]
+position = Vector2(31, -564)
 rotation = 2.41636
 
-[node name="Blue-dot" type="Sprite2D" parent="Line2D/Path2D/PathFollow2D"]
+[node name="Blue-dot" type="Sprite2D" parent="UI/Track Display/Path2D/PathFollow2D"]
 rotation = -2.41636
 scale = Vector2(2, 2)
 texture = ExtResource("7_70yoc")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Track Display"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="background" type="Sprite2D" parent="Graphics"]
+z_index = -1
+texture = ExtResource("1_fw7cn")
+metadata/_edit_lock_ = true
+
+[node name="Camera" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="Player 1" parent="Objects" instance=ExtResource("2_ild5j")]
+position = Vector2(-138, -77)
+
+[node name="Player 2" parent="Objects" instance=ExtResource("2_ild5j")]
+modulate = Color(1, 0.113725, 1, 1)
+position = Vector2(114, -74)
+blueTeam = false
+playerControl = 2
+
+[node name="Car2" parent="Objects" instance=ExtResource("3_yqbft")]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(610, 105)
+scale = Vector2(1, 0.67)
+
+[node name="Car" parent="Objects" instance=ExtResource("3_yqbft")]
+position = Vector2(-716.76, 101)
+scale = Vector2(1, 0.67)
+
+[node name="System" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="System"]
+script = ExtResource("4_0indh")
